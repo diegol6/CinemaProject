@@ -6,6 +6,7 @@ var express = require("express");
 var router = express.Router();
 //esto nos permite tener una aplicacion mas pequeña
 
+
 const peliculaSchema = require("./src/models/schemas");
 const usuarioSchema = require("./src/models/schemas2");
 
