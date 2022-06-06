@@ -17,6 +17,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
 import Rating from "@mui/material/Rating";
+import { useSelector } from 'react-redux';
 
 
 function Copyright() {
@@ -32,11 +33,10 @@ function Copyright() {
   );
 }
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
 const theme = createTheme();
 
 export default function Home() {
+  const user = useSelector(state => state.auth.username);
   const [list, setList] = useState([]);
 
   useEffect( () => {

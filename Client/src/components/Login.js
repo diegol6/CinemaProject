@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,7 +14,9 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import { useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { authActions } from '../store/auth';
+
 
 function Copyright(props) {
   return (
@@ -29,22 +31,36 @@ function Copyright(props) {
   );
 }
 
+
 const theme = createTheme();
 
 
 export default function SignIn() {
-  // enteredEmailRef = useRef();
-  // enteredPasswordRef = useRef();
-
+  const dispatch = useDispatch();
 
   let navigate = useNavigate();
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // const enteredEmail = enteredEmailRef;
-    // const enteredPassword = enteredPasswordRef;
+  const [user, setUser] = useState('');
+  const [password, setPassword] = useState('');
 
-    
-    navigate("/home", { replace: true });
+  const [ info, setInfo] = useState([]);
+  
+
+   const handleSubmit = async (event) => {
+    event.preventDefault();
+    const qs = require('qs');
+    const data = { user, password}
+    try {
+      axios.post('http://localhost:3000/api/autenticar', qs.stringify(data)).then( res => {
+        setInfo(res.data);
+        // console.log(info);
+        // dispatch(authActions.login(info.username));
+        navigate("/home", { replace: true });
+      }).catch( error => {
+        console.log(error);
+      })
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   return (
@@ -70,12 +86,13 @@ export default function SignIn() {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Correo Electronico"
-              name="email"
-              autoComplete="email"
+              id="user"
+              label="Usuario"
+              name="user"
+              autoComplete="user"
               autoFocus
-              // inputRef={enteredEmailRef}
+              value={user}
+              onChange={ e => setUser(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -86,12 +103,13 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
-              // inputRef={enteredPasswordRef}
+              value={password}
+              onChange={ e => setPassword(e.target.value)}
             />
-            <FormControlLabel
+            {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Recuerdame"
-            />
+            /> */}
             <Button
               type="submit"
               fullWidth
