@@ -6,7 +6,6 @@ var express = require("express");
 var router = express.Router();
 //esto nos permite tener una aplicacion mas pequeña
 
-
 const peliculaSchema = require("./src/models/schemas");
 const usuarioSchema = require("./src/models/schemas2");
 
@@ -56,19 +55,19 @@ router.get("/usuarios/:id", function (req, res) {
   });
 });
 
-router.post("/autenticar",  (req, res) => {
-  //guarda una cancion en la base de datos
-  const { email, password } = req.body;
-
-  let user =  usuarioSchema.findOne({email});
-
-  if(!user) return res.status(400).send('usuario no encontrado');
-
- if(user.password === password){
-  user.password = undefined; 
-  res.send(user);
- }
-  
+router.post("/autenticar", (req, res) => {
+  const { usuario, password } = req.body;
+  usuarioSchema.findOne(
+    { usuario: usuario, password: password },
+    (err, usuario) => {
+      if (err) res.status(500).send("Error en la DB2");
+      else {
+        if (usuario != null) {
+          res.status(200).json(usuario);
+        } else res.status(404).send("No se encontro el Usuario ID");
+      }
+    }
+  );
 });
 
 module.exports = router;
