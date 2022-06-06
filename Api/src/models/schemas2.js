@@ -4,6 +4,7 @@ const usuarioSchema = new mongoose.Schema(
   {
     //_id: mongoose.Schema.Types.ObjectId,
     username: String,
+    email: String,
     password: String,
     status: String,
     tipo: String,

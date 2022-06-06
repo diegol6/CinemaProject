@@ -56,4 +56,19 @@ router.get("/usuarios/:id", function (req, res) {
   });
 });
 
+router.post("/autenticar",  (req, res) => {
+  //guarda una cancion en la base de datos
+  const { email, password } = req.body;
+
+  let user =  usuarioSchema.findOne({email});
+
+  if(!user) return res.status(400).send('usuario no encontrado');
+
+ if(user.password === password){
+  user.password = undefined; 
+  res.send(user);
+ }
+  
+});
+
 module.exports = router;

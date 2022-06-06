@@ -13,6 +13,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
+import { useRef, useState } from 'react';
 
 function Copyright(props) {
   return (
@@ -29,15 +31,19 @@ function Copyright(props) {
 
 const theme = createTheme();
 
+
 export default function SignIn() {
-    let navigate = useNavigate();
+  // enteredEmailRef = useRef();
+  // enteredPasswordRef = useRef();
+
+
+  let navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    // const enteredEmail = enteredEmailRef;
+    // const enteredPassword = enteredPasswordRef;
+
+    
     navigate("/home", { replace: true });
   };
 
@@ -69,6 +75,7 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
+              // inputRef={enteredEmailRef}
             />
             <TextField
               margin="normal"
@@ -79,6 +86,7 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
+              // inputRef={enteredPasswordRef}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
