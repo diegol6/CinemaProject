@@ -42,25 +42,17 @@ export default function SignIn() {
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
 
-  const [ info, setInfo] = useState([]);
-  
-
-   const handleSubmit = async (event) => {
+   const handleSubmit =  (event) => {
     event.preventDefault();
     const qs = require('qs');
     const data = { user, password}
-    try {
       axios.post('http://localhost:3000/api/autenticar', qs.stringify(data)).then( res => {
-        setInfo(res.data);
-        // console.log(info);
-        // dispatch(authActions.login(info.username));
-        navigate("/home", { replace: true });
+          dispatch(authActions.login({username: res.data.username, access: res.data.tipo}));   
+          navigate("/home", { replace: true });
+          console.log(res.data) 
       }).catch( error => {
         console.log(error);
       })
-    } catch (error) {
-      console.log(error)
-    }
   };
 
   return (
