@@ -63,8 +63,9 @@ router.post("/autenticar", (req, res) => {
       if (err) res.status(500).send("Error en la DB2");
       else {
         if (usuario != null) {
+          usuario.password = "";
           res.status(200).json(usuario);
-        } else res.status(404).send("No se encontro el Usuario ID");
+        } else res.status(404).send("Contraseña o Usuario incorrecto");
       }
     }
   );
