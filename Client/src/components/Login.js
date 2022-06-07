@@ -3,8 +3,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -16,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { authActions } from '../store/auth';
+
 
 
 function Copyright(props) {
@@ -38,21 +37,25 @@ const theme = createTheme();
 export default function SignIn() {
   const dispatch = useDispatch();
 
+  const [isloadin, setLoading] = useState(true);
   let navigate = useNavigate();
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
 
-   const handleSubmit =  (event) => {
+   const handleSubmit = async (event) => {
     event.preventDefault();
     const qs = require('qs');
     const data = { user, password}
-      axios.post('http://localhost:3000/api/autenticar', qs.stringify(data)).then( res => {
-          dispatch(authActions.login({username: res.data.username, access: res.data.tipo}));   
-          navigate("/home", { replace: true });
-          console.log(res.data) 
-      }).catch( error => {
-        console.log(error);
-      })
+     try {
+      const res = await axios.post('http://localhost:3000/api/autenticar', qs.stringify(data));
+      if(res.status === 200 ){
+        dispatch(authActions.login({username: user, access: res.data.tipo})); 
+        navigate("/home", { replace: true });
+        console.log(res.data)
+      }
+     } catch (error) {
+       console.log(error)
+     }    
   };
 
   return (

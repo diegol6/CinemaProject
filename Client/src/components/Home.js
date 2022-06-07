@@ -36,8 +36,7 @@ function Copyright() {
 const theme = createTheme();
 
 export default function Home() {
-  // const username = useSelector(state => state.auth.username);
-  // const access = useSelector(state => state.auth.access);
+  const auth = useSelector(state => state.auth);
   const [list, setList] = useState([]);
 
   useEffect( () => {
@@ -48,6 +47,8 @@ export default function Home() {
     })
   },[setList])
 
+  console.log(auth);
+  
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -57,7 +58,7 @@ export default function Home() {
             Cinema Project
           </Typography>
           <Typography variant="h6" color="inherit" noWrap>
-            {/* Usuario: {username} Permiso: {access} */}
+             {auth.username}  
           </Typography>
         </Toolbar>
       </AppBar>
