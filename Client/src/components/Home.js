@@ -105,11 +105,11 @@ export default function Home() {
             </Stack>
           </Container>
         </Box>
-        <Container sx={{ py: 8 }} maxWidth="false">
+        <Container sx={{ py: 8 }} maxWidth="md">
           {/* End hero unit */}
-          <Grid container spacing={8}>
+          <Grid container spacing={4}>
             {list.map((lista) => (
-              <Grid item key={lista._id} xs={12} sm={6} md={4} lg={2}>
+              <Grid item key={lista._id} xs={12} sm={6} md={4}>
                 <Card
                   sx={{
                     height: "100%",
