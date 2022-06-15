@@ -127,16 +127,23 @@ export default function Home() {
                     alt="pelicula"
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
-                    <Typography gutterBottom variant="h4" component="h1">
+                    <Typography gutterBottom variant="h4" component="h1" style={{fontWeight: 900,textAlign:'center'}}>
                       {lista.filme}
                     </Typography>
-                    <Typography gutterBottom variant="h6" component="h3">
-                      Director: {lista.director}
+                    <Typography gutterBottom variant="h6" component="h3" style={{fontStyle:'italic', textAlign:'center'}}>
+                      <Typography variant="h6" component="h3" style={{fontWeight:700, fontStyle:'normal'}}>
+                        Director
+                      </Typography>
+                      {lista.director}
+
                     </Typography>
-                    <Typography gutterBottom variant="h6" component="h3">
-                      Reparto: {lista.reparto}
+                    <Typography gutterBottom variant="h6" component="h3" style={{color:'blue',textAlign:'center'}}>
+                      <Typography variant="h6" component="h3" style={{fontWeight:700, fontStyle:'normal',color:'black'}}>
+                      Reparto 
+                      </Typography>
+                      {lista.reparto}
                     </Typography>
-                    <Typography>{lista.sinopsis}</Typography>
+                    <Typography style={{ textAlign:'justify'}}>{lista.sinopsis}</Typography>
                   </CardContent>
                   <Stack
                     spacing={1}
