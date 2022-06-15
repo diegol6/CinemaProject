@@ -105,11 +105,11 @@ export default function Home() {
             </Stack>
           </Container>
         </Box>
-        <Container sx={{ py: 8 }} maxWidth="md">
+        <Container sx={{ py: 8 }} maxWidth="xl">
           {/* End hero unit */}
           <Grid container spacing={4}>
             {list.map((lista) => (
-              <Grid item key={lista._id} xs={12} sm={6} md={4}>
+              <Grid item key={lista._id} xs={12} sm={6} md={4} lg={3}>
                 <Card
                   sx={{
                     height: "100%",
@@ -127,23 +127,51 @@ export default function Home() {
                     alt="pelicula"
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
-                    <Typography gutterBottom variant="h4" component="h1" style={{fontWeight: 900,textAlign:'center'}}>
+                    <Typography
+                      gutterBottom
+                      variant="h4"
+                      component="h1"
+                      style={{ fontWeight: 900, textAlign: "center" }}
+                    >
                       {lista.filme}
                     </Typography>
-                    <Typography gutterBottom variant="h6" component="h3" style={{fontStyle:'italic', textAlign:'center'}}>
-                      <Typography variant="h6" component="h3" style={{fontWeight:700, fontStyle:'normal'}}>
+                    <Typography
+                      gutterBottom
+                      variant="h6"
+                      component="h3"
+                      style={{ fontStyle: "italic", textAlign: "center" }}
+                    >
+                      <Typography
+                        variant="h6"
+                        component="h3"
+                        style={{ fontWeight: 700, fontStyle: "normal" }}
+                      >
                         Director
                       </Typography>
                       {lista.director}
-
                     </Typography>
-                    <Typography gutterBottom variant="h6" component="h3" style={{color:'blue',textAlign:'center'}}>
-                      <Typography variant="h6" component="h3" style={{fontWeight:700, fontStyle:'normal',color:'black'}}>
-                      Reparto 
+                    <Typography
+                      gutterBottom
+                      variant="h6"
+                      component="h3"
+                      style={{ color: "blue", textAlign: "center" }}
+                    >
+                      <Typography
+                        variant="h6"
+                        component="h3"
+                        style={{
+                          fontWeight: 700,
+                          fontStyle: "normal",
+                          color: "black",
+                        }}
+                      >
+                        Reparto
                       </Typography>
                       {lista.reparto}
                     </Typography>
-                    <Typography style={{ textAlign:'justify'}}>{lista.sinopsis}</Typography>
+                    <Typography style={{ textAlign: "justify" }}>
+                      {lista.sinopsis}
+                    </Typography>
                   </CardContent>
                   <Stack
                     spacing={1}
