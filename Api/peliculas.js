@@ -36,6 +36,24 @@ router.get("/peliculas/:id", function (req, res) {
   });
 });
 
+router.post("/peliculas", function (req, res) {
+  //crea un registro
+  const pelicula = new peliculaSchema({
+    filme: req.body.filme,
+    director: req.body.director,
+    rate: req.body.rate,
+    categoria: req.body.categoria,
+    duracion: req.body.duracion,
+    actores: req.body.actores,
+    imagen: req.body.imagen,
+    sinopsis: req.body.sinopsis,
+  });
+  pelicula.save(function (err) {
+    if (err) res.status(500).send("Error en la BD");
+    else res.status(200).send("Pelicula Guardada");
+  });
+});
+
 router.get("/usuarios", (req, res) => {
   usuarioSchema.find((err, usuarios) => {
     if (err) res.status(500).send("Error en la DB2");
