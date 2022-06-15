@@ -121,8 +121,7 @@ export default function Home() {
                     component="img"
                     sx={{
                       // 16:9
-                      height: 550,
-                      pt: "56.25%",
+                      height: 450,
                     }}
                     image={lista.imagen}
                     alt="pelicula"
