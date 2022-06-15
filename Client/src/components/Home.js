@@ -74,6 +74,7 @@ export default function Home() {
           }}
         >
           <Container maxWidth="sm">
+            <img src="https://i.ibb.co/d2dT19d/cine-estudio-palomitas-espana-salas-reasonwhy-esjpg.jpg" alt="cine"/>
             <Typography
               component="h1"
               variant="h2"
