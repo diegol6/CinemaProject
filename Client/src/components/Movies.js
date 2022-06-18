@@ -1,9 +1,13 @@
-import * as React from 'react';
+import React, {useState, useEffect} from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Rating from '@mui/material/Rating';
 import Link from '@mui/material/Link';
+import Stack from '@mui/material/Stack';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 function Copyright() {
   return (
@@ -18,7 +22,21 @@ function Copyright() {
   );
 }
 
-export default function StickyFooter() {
+const  Movies = () => {
+ let { id } = useParams();
+ const [movie, setMovie] = useState([]);
+
+ useEffect(()=>{
+    axios.get(`http://localhost:3000/api/peliculas/${id}`).then(res =>{
+    console.log(res.data);
+    setMovie(res.data);
+ }).catch(err =>{
+    console.log(err);
+ })
+ }, [movie.length])
+
+ 
+
   return (
     <Box
       sx={{
@@ -29,14 +47,27 @@ export default function StickyFooter() {
     >
       <CssBaseline />
       <Container component="main" sx={{ mt: 8, mb: 2 }} maxWidth="sm">
+        <img alt='movie' width="600" 
+     height="800" src={movie.imagen}/>
         <Typography variant="h2" component="h1" gutterBottom>
-          Sticky footer
+          {movie.filme}
         </Typography>
         <Typography variant="h5" component="h2" gutterBottom>
-          {'Pin a footer to the bottom of the viewport.'}
-          {'The footer will move as the main element of the page grows.'}
+          {movie.sinopsis}
         </Typography>
-        <Typography variant="body1">Sticky footer placeholder.</Typography>
+        <Stack
+        spacing={1}
+        alignItems="left"
+        justifyContent="left"
+        sx={{ m: 2 }}
+        >
+        <Rating
+            name="half-rating"
+            value={parseInt(movie.rate)}
+            precision={0.5}
+            readOnly
+        /> 
+        </Stack>
       </Container>
       <Box
         component="footer"
@@ -57,3 +88,5 @@ export default function StickyFooter() {
     </Box>
   );
 }
+
+export default Movies;
