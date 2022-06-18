@@ -9,7 +9,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
@@ -17,9 +16,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Rating from "@mui/material/Rating";
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function Copyright() {
   return (
@@ -38,7 +36,7 @@ const theme = createTheme();
 
 export default function Home() {
   const navigate = useNavigate();
-  const auth = useSelector(state => state.auth);
+  const isAuth = useSelector((state) => state.auth.isAuth);
   const [list, setList] = useState([]);
 
   useEffect(() => {
@@ -65,7 +63,10 @@ export default function Home() {
           }}
         >
           <Container maxWidth="sm">
-            <img src="https://i.ibb.co/d2dT19d/cine-estudio-palomitas-espana-salas-reasonwhy-esjpg.jpg" alt="cine"/>
+            <img
+              src="https://i.ibb.co/d2dT19d/cine-estudio-palomitas-espana-salas-reasonwhy-esjpg.jpg"
+              alt="cine"
+            />
             <Typography
               component="h1"
               variant="h2"
@@ -180,7 +181,12 @@ export default function Home() {
                   </Stack>
                   <CardActions>
                     <Button size="small">Mirar Trailer</Button>
-                    <Button size="small" onClick={()=> navigate(`/movies/${lista._id}`) }>Mas informacion</Button>
+                    <Button
+                      size="small"
+                      onClick={() => navigate(`/movies/${lista._id}`)}
+                    >
+                      Mas informacion
+                    </Button>
                   </CardActions>
                 </Card>
               </Grid>
