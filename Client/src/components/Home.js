@@ -18,6 +18,7 @@ import axios from 'axios';
 import {useState, useEffect} from 'react';
 import Rating from "@mui/material/Rating";
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 
 function Copyright() {
@@ -36,6 +37,7 @@ function Copyright() {
 const theme = createTheme();
 
 export default function Home() {
+  const navigate = useNavigate();
   const auth = useSelector(state => state.auth);
   const [list, setList] = useState([]);
 
@@ -47,8 +49,6 @@ export default function Home() {
     })
   },[setList])
 
-  console.log(auth);
-  
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -132,7 +132,7 @@ export default function Home() {
                     </Stack>
                   <CardActions>
                     <Button size="small">Mirar Trailer</Button>
-                    <Button size="small">Comentar</Button>
+                    <Button size="small" onClick={()=> navigate(`/movies/${lista._id}`) }>Mas informacion</Button>
                   </CardActions>
                 </Card>
               </Grid>
