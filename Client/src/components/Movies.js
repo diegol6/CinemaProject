@@ -6,6 +6,9 @@ import Container from '@mui/material/Container';
 import Rating from '@mui/material/Rating';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
+//import Chip from '@mui/material/Chip';
+//import Stack from '@mui/material/Stack';
+import Chip from '@mui/material/Chip';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
@@ -35,7 +38,7 @@ const  Movies = () => {
  })
  }, [movie.length])
 
- 
+
 
   return (
     <Box
@@ -49,10 +52,32 @@ const  Movies = () => {
       <Container component="main" sx={{ mt: 8, mb: 2 }} maxWidth="sm">
         <img alt='movie' width="600" 
      height="800" src={movie.imagen}/>
-        <Typography variant="h2" component="h1" gutterBottom>
+        
+        
+          <Stack direction="row" spacing={1}>
+            <Chip label={movie.categoria} variant="outlined" />
+          </Stack>
+
+        <Typography variant="h2" component="h1" gutterBottom 
+          style={{ fontWeight: 900, textAlign: "center" }}>
           {movie.filme}
+          
         </Typography>
-        <Typography variant="h5" component="h2" gutterBottom>
+        <Typography style={{ fontWeight: 900, textAlign: "left" }}>
+          Director
+        </Typography>
+        <Typography variant="h6" component="h3" gutterBottom 
+          >
+          {movie.director}
+        </Typography>
+        <Typography style={{ fontWeight: 900, textAlign: "left" }}>
+          Reparto
+        </Typography>
+        <Typography variant="h6" component="h3" gutterBottom 
+          >
+          {movie.reparto}
+        </Typography>
+        <Typography  variant="h5" component="h2" gutterBottom>
           {movie.sinopsis}
         </Typography>
         <Stack
