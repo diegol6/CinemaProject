@@ -47,6 +47,7 @@ router.post("/peliculas", function (req, res) {
     actores: req.body.actores,
     imagen: req.body.imagen,
     sinopsis: req.body.sinopsis,
+    trailerLink: req.body.trailerLink,
   });
   pelicula.save(function (err) {
     if (err) res.status(500).send("Error en la BD");

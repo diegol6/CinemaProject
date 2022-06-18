@@ -12,7 +12,7 @@ const peliculaSchema = new mongoose.Schema(
     actores: String,
     imagen: String,
     sinopsis: String,
-    //cancionId: String,
+    trailerLink: String,
   },
   {
     collection: "Peliculas",
